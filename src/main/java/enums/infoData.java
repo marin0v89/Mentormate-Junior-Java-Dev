@@ -1,6 +1,6 @@
 package enums;
 
-public enum InfoData {
+public enum infoData {
     name,
     totalSales,
     salesPeriod,

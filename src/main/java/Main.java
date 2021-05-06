@@ -1,4 +1,4 @@
-import enums.InfoData;
+import enums.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -31,13 +31,13 @@ public class Main {
 
                 //Reading the employee data from the file
                 String name =
-                        (String) getJSONArray(employeeObject, String.valueOf(InfoData.name));
+                        (String) getJSONArray(employeeObject, String.valueOf(infoData.name));
                 Long totalSales =
-                        (Long) getJSONArray(employeeObject, String.valueOf(InfoData.totalSales));
+                        (Long) getJSONArray(employeeObject, String.valueOf(infoData.totalSales));
                 Long salesPeriod =
-                        (Long) getJSONArray(employeeObject, String.valueOf(InfoData.salesPeriod));
+                        (Long) getJSONArray(employeeObject, String.valueOf(infoData.salesPeriod));
                 Double experienceMultiplier =
-                        (Double) getJSONArray(employeeObject, String.valueOf(InfoData.experienceMultiplier));
+                        (Double) getJSONArray(employeeObject, String.valueOf(infoData.experienceMultiplier));
 
 
                 employees.add(new Employee(name, totalSales, salesPeriod, experienceMultiplier));
@@ -49,11 +49,11 @@ public class Main {
 
             //Reading report definition data file
             Long topPerformersThreshold =
-                    (Long) getJSONData(dataCompare, String.valueOf(InfoData.topPerformersThreshold));
+                    (Long) getJSONData(dataCompare, String.valueOf(infoData.topPerformersThreshold));
             boolean useExprienceMultiplier =
-                    (boolean) getJSONData(dataCompare, String.valueOf(InfoData.useExprienceMultiplier));
+                    (boolean) getJSONData(dataCompare, String.valueOf(infoData.useExprienceMultiplier));
             Long periodLimit =
-                    (Long) getJSONData(dataCompare, String.valueOf(InfoData.periodLimit));
+                    (Long) getJSONData(dataCompare, String.valueOf(infoData.periodLimit));
 
             //Writing to the result file + implementing some of the logic and condition checks
             List<Employee> bestEmployees = new LinkedList<>();
