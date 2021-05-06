@@ -1,1 +1,1 @@
-# Mentormate-Junior-Java-Dev
+# Problem solution for Mentormate Junior Java developer interview.
