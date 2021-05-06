@@ -43,8 +43,11 @@ public class Main {
             boolean useExprienceMultiplier = (boolean) getJSONData(dataCompare, "useExprienceMultiplier");
             Long periodLimit = (Long) getJSONData(dataCompare, "periodLimit");
 
+            //Writing to the result file + implementing some of the logic and condition checks
             List<Employee> bestEmployees = new LinkedList<>();
-            FileWriter file = new FileWriter("src/jsonFile/result");
+
+            path = "src/jsonFile/result";
+            FileWriter file = new FileWriter(path);
             file.write("Name , Score");
             file.write(System.lineSeparator());
 
