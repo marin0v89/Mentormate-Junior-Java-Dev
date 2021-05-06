@@ -1,3 +1,4 @@
+import enums.InfoData;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,12 +11,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+
 public class Main {
 
     public static void main(String[] args) {
         JSONParser parser = new JSONParser();
+
         String path = "src/jsonFile/data.json";
         try (FileReader reader = new FileReader(path)) {
+
             Object obj = parser.parse(reader);
             JSONArray employeeList = (JSONArray) obj;
 
@@ -26,10 +30,15 @@ public class Main {
                 JSONObject employeeObject = (JSONObject) o;
 
                 //Reading the employee data from the file
-                String name = (String) getJSONArray(employeeObject, "name");
-                Long totalSales = (Long) getJSONArray(employeeObject, "totalSales");
-                Long salesPeriod = (Long) getJSONArray(employeeObject, "salesPeriod");
-                Double experienceMultiplier = (Double) getJSONArray(employeeObject, "experienceMultiplier");
+                String name =
+                        (String) getJSONArray(employeeObject, String.valueOf(InfoData.name));
+                Long totalSales =
+                        (Long) getJSONArray(employeeObject, String.valueOf(InfoData.totalSales));
+                Long salesPeriod =
+                        (Long) getJSONArray(employeeObject, String.valueOf(InfoData.salesPeriod));
+                Double experienceMultiplier =
+                        (Double) getJSONArray(employeeObject, String.valueOf(InfoData.experienceMultiplier));
+
 
                 employees.add(new Employee(name, totalSales, salesPeriod, experienceMultiplier));
             }
@@ -39,9 +48,12 @@ public class Main {
             JSONObject dataCompare = (JSONObject) reportObj;
 
             //Reading report definition data file
-            Long topPerformersThreshold = (Long) getJSONData(dataCompare, "topPerformersThreshold");
-            boolean useExprienceMultiplier = (boolean) getJSONData(dataCompare, "useExprienceMultiplier");
-            Long periodLimit = (Long) getJSONData(dataCompare, "periodLimit");
+            Long topPerformersThreshold =
+                    (Long) getJSONData(dataCompare, String.valueOf(InfoData.topPerformersThreshold));
+            boolean useExprienceMultiplier =
+                    (boolean) getJSONData(dataCompare, String.valueOf(InfoData.useExprienceMultiplier));
+            Long periodLimit =
+                    (Long) getJSONData(dataCompare, String.valueOf(InfoData.periodLimit));
 
             //Writing to the result file + implementing some of the logic and condition checks
             List<Employee> bestEmployees = new LinkedList<>();
