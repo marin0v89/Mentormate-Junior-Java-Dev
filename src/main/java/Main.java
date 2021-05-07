@@ -22,7 +22,7 @@ public class Main {
             Object obj = parser.parse(reader);
             JSONArray employeeList = (JSONArray) obj;
 
-            List<Employee> employees = addEmployeeOnj(employeeList);
+            List<Employee> employees = addEmployeeObj(employeeList);
 
 
             FileReader reportReader = new FileReader("src/jsonFile/reportDefinition.json");
@@ -71,7 +71,7 @@ public class Main {
         }
     }
 
-    private static List<Employee> addEmployeeOnj(JSONArray employeeList) {
+    private static List<Employee> addEmployeeObj(JSONArray employeeList) {
         List<Employee> employees = new ArrayList<>();
         for (Object o : employeeList) {
 
