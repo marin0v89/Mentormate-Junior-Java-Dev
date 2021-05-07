@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class Main {
@@ -73,9 +74,9 @@ public class Main {
 
     private static List<Employee> addEmployeeObj(JSONArray employeeList) {
         List<Employee> employees = new ArrayList<>();
-        for (Object o : employeeList) {
+        for (Object element : employeeList) {
 
-            JSONObject employeeObject = (JSONObject) o;
+            JSONObject employeeObject = (JSONObject) element;
 
             //Reading the employee data from the file
             String name =
@@ -95,6 +96,8 @@ public class Main {
 
     private static Object getJSONData(JSONObject dataCompare, String predicate) {
         return dataCompare.get(predicate);
+
+
     }
 
     private static Object getJSONArray(JSONObject employeeObject, String predicate) {
