@@ -46,14 +46,14 @@ public class Employee {
     }
 
     public long getSalesPeriod() {
-        return salesPeriod;
+        return this.salesPeriod;
     }
 
     public double getExperienceMultiplier() {
-        return experienceMultiplier;
+        return this.experienceMultiplier;
     }
 
     public long getTotalSales() {
-        return totalSales;
+        return this.totalSales;
     }
 }
