@@ -1,4 +1,4 @@
-import enums.*;
+import enums.infoData;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -23,25 +22,8 @@ public class Main {
             Object obj = parser.parse(reader);
             JSONArray employeeList = (JSONArray) obj;
 
-            List<Employee> employees = new ArrayList<>();
+            List<Employee> employees = addEmployeeOnj(employeeList);
 
-            for (Object o : employeeList) {
-
-                JSONObject employeeObject = (JSONObject) o;
-
-                //Reading the employee data from the file
-                String name =
-                        (String) getJSONArray(employeeObject, String.valueOf(infoData.name));
-                Long totalSales =
-                        (Long) getJSONArray(employeeObject, String.valueOf(infoData.totalSales));
-                Long salesPeriod =
-                        (Long) getJSONArray(employeeObject, String.valueOf(infoData.salesPeriod));
-                Double experienceMultiplier =
-                        (Double) getJSONArray(employeeObject, String.valueOf(infoData.experienceMultiplier));
-
-
-                employees.add(new Employee(name, totalSales, salesPeriod, experienceMultiplier));
-            }
 
             FileReader reportReader = new FileReader("src/jsonFile/reportDefinition.json");
             Object reportObj = parser.parse(reportReader);
@@ -56,7 +38,6 @@ public class Main {
                     (Long) getJSONData(dataCompare, String.valueOf(infoData.periodLimit));
 
             //Writing to the result file + implementing some of the logic and condition checks
-            List<Employee> bestEmployees = new LinkedList<>();
 
             path = "src/jsonFile/result";
             FileWriter file = new FileWriter(path);
@@ -65,16 +46,22 @@ public class Main {
 
             for (Employee employee : employees) {
 
-                if (employee.getSalesPeriod() <= periodLimit && useExprienceMultiplier) {
+                String name = employee.getName();
+                long salesPeriod = employee.getSalesPeriod();
+                long totalSales = employee.getTotalSales();
+                double expMultiplier = employee.getExperienceMultiplier();
+
+                if (salesPeriod <= periodLimit && useExprienceMultiplier) {
                     Double score =
-                            employee.getTotalSales() / employee.getSalesPeriod() * employee.getExperienceMultiplier();
+                            totalSales / salesPeriod * expMultiplier;
                     if (score >= topPerformersThreshold) {
-                        file.write(employee.getName() + " ," + score);
+                        file.write(name + ", " + score);
                         file.write(System.lineSeparator());
                     }
-                } else if (employee.getSalesPeriod() <= periodLimit) {
-                    long score = employee.getTotalSales() / employee.getSalesPeriod();
-                    file.write(employee.getName() + " ," + score);
+
+                } else if (salesPeriod <= periodLimit) {
+                    long score = totalSales / salesPeriod;
+                    file.write(name + " ," + score);
                     file.write(System.lineSeparator());
                 }
             }
@@ -82,6 +69,28 @@ public class Main {
         } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static List<Employee> addEmployeeOnj(JSONArray employeeList) {
+        List<Employee> employees = new ArrayList<>();
+        for (Object o : employeeList) {
+
+            JSONObject employeeObject = (JSONObject) o;
+
+            //Reading the employee data from the file
+            String name =
+                    (String) getJSONArray(employeeObject, String.valueOf(infoData.name));
+            Long totalSales =
+                    (Long) getJSONArray(employeeObject, String.valueOf(infoData.totalSales));
+            Long salesPeriod =
+                    (Long) getJSONArray(employeeObject, String.valueOf(infoData.salesPeriod));
+            Double experienceMultiplier =
+                    (Double) getJSONArray(employeeObject, String.valueOf(infoData.experienceMultiplier));
+
+
+            employees.add(new Employee(name, totalSales, salesPeriod, experienceMultiplier));
+        }
+        return employees;
     }
 
     private static Object getJSONData(JSONObject dataCompare, String predicate) {
