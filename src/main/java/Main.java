@@ -53,8 +53,8 @@ public class Main {
                 double expMultiplier = employee.getExperienceMultiplier();
 
                 if (salesPeriod <= periodLimit && useExprienceMultiplier) {
-                    Double score =
-                            totalSales / salesPeriod * expMultiplier;
+                    double score =
+                            (totalSales * 1.0 / salesPeriod) * expMultiplier;
                     if (score >= topPerformersThreshold) {
                         file.write(name + ", " + score);
                         file.write(System.lineSeparator());
@@ -96,8 +96,6 @@ public class Main {
 
     private static Object getJSONData(JSONObject dataCompare, String predicate) {
         return dataCompare.get(predicate);
-
-
     }
 
     private static Object getJSONArray(JSONObject employeeObject, String predicate) {
