@@ -1,4 +1,6 @@
 import enums.infoData;
+import io.InputReader;
+import io.OutputWriter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,18 +16,21 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        //Parsing the JSON file.
         JSONParser parser = new JSONParser();
         String path = "src/jsonFile/data.json";
 
-        try (FileReader reader = new FileReader(path)) {
-            Object obj = parser.parse(reader);
+        InputReader reader = new InputReader(path);
+        try {
+            Object obj = parser.parse(reader.readFile());
             JSONArray employeeList = (JSONArray) obj;
 
             List<Employee> employees = addEmployeeObj(employeeList);
 
+            path = "src/jsonFile/reportDefinition.json";
+            InputReader reportReader = new InputReader(path);
 
-            FileReader reportReader = new FileReader("src/jsonFile/reportDefinition.json");
-            Object reportObj = parser.parse(reportReader);
+            Object reportObj = parser.parse(reportReader.readFile());
             JSONObject dataCompare = (JSONObject) reportObj;
 
             //Reading report definition data file
@@ -39,7 +44,8 @@ public class Main {
             //Writing to the result file + implementing some of the logic and condition checks
 
             path = "src/jsonFile/result";
-            FileWriter file = new FileWriter(path);
+
+            OutputWriter file = new OutputWriter(path);
             file.write("Name , Score");
             file.write(System.lineSeparator());
 
