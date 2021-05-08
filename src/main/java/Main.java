@@ -9,17 +9,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         JSONParser parser = new JSONParser();
-
         String path = "src/jsonFile/data.json";
-        try (FileReader reader = new FileReader(path)) {
 
+        try (FileReader reader = new FileReader(path)) {
             Object obj = parser.parse(reader);
             JSONArray employeeList = (JSONArray) obj;
 
