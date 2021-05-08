@@ -25,13 +25,13 @@ public class Main {
 
             List<Employee> employees = addEmployeeObj(employeeList);
 
+            //Reading report definition data file
             path = "src/jsonFile/reportDefinition.json";
             InputReader reportReader = new InputReader(path);
 
             Object reportObj = parser.parse(reportReader.readFile());
             JSONObject dataCompare = (JSONObject) reportObj;
 
-            //Reading report definition data file
             Long topPerformersThreshold =
                     (Long) getJSONData(dataCompare, String.valueOf(infoData.topPerformersThreshold));
             boolean useExprienceMultiplier =

@@ -1,6 +1,5 @@
 package io.interfaces;
 
-import java.io.FileWriter;
 import java.io.IOException;
 
 public interface OutputWriter {
