@@ -1,4 +1,4 @@
-package Core;
+package core;
 
 import enums.infoData;
 import io.InputReader;
