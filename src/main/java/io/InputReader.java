@@ -9,7 +9,7 @@ public class InputReader implements io.interfaces.InputReader {
     private FileReader reader;
     private String path;
 
-    public InputReader(String path) throws FileNotFoundException {
+    public InputReader(String path) {
         this.path = path;
     }
 
