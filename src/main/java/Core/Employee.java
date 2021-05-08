@@ -1,3 +1,5 @@
+package Core;
+
 public class Employee {
     private String name;
     private long totalSales;
