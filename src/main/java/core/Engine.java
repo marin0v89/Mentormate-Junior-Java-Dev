@@ -6,7 +6,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.IOException;
 import java.util.List;
 
-public class Engine implements Runnable {
+public class Engine implements core.interfaces.Engine {
     @Override
     public void run() {
         //Parsing the JSON file.
