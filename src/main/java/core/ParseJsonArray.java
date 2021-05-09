@@ -15,6 +15,7 @@ public class ParseJsonArray {
     private static List<Employee> employees;
 
     public static void parseArray(JSONParser parser){
+        //Reading the employee data from the file
         String path = "src/jsonFile/data.json";
 
         InputReader reader = new InputReader(path);
@@ -33,7 +34,6 @@ public class ParseJsonArray {
 
             JSONObject employeeObject = (JSONObject) element;
 
-            //Reading the employee data from the file
             String name =
                     (String) getJSONArray(employeeObject, String.valueOf(infoData.name));
             Long totalSales =
