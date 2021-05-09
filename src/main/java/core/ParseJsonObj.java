@@ -26,7 +26,7 @@ public class ParseJsonObj {
         }
         JSONObject dataCompare = (JSONObject) reportObj;
 
-         topPerformersThreshold =
+        topPerformersThreshold =
                 (Long) getJSONData(dataCompare, String.valueOf(infoData.topPerformersThreshold));
         useExprienceMultiplier =
                 (boolean) getJSONData(dataCompare, String.valueOf(infoData.useExprienceMultiplier));

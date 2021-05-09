@@ -14,7 +14,7 @@ import java.util.List;
 public class ParseJsonArray {
     private static List<Employee> employees;
 
-    public static void parseArray(JSONParser parser){
+    public static void parseArray(JSONParser parser) {
         //Reading the employee data from the file
         String path = "src/jsonFile/data.json";
 
@@ -24,10 +24,11 @@ public class ParseJsonArray {
             JSONArray employeeList = (JSONArray) obj;
 
             employees = addEmployeeObj(employeeList);
-    } catch (IOException | ParseException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
     }
+
     private static List<Employee> addEmployeeObj(JSONArray employeeList) {
         List<Employee> employees = new ArrayList<>();
         for (Object element : employeeList) {
@@ -48,6 +49,7 @@ public class ParseJsonArray {
         }
         return employees;
     }
+
     private static Object getJSONArray(JSONObject employeeObject, String predicate) {
         return employeeObject.get(predicate);
     }
