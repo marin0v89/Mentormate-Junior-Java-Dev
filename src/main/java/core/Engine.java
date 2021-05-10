@@ -45,7 +45,7 @@ public class Engine implements core.interfaces.Engine {
 
                 } else if (salesPeriod <= periodLimit) {
                     long score = totalSales / salesPeriod;
-                    file.write(name + " ," + score);
+                    file.write(name + ", " + score);
                     file.write(System.lineSeparator());
                 }
             }
