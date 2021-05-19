@@ -12,15 +12,18 @@ public class Engine implements core.interfaces.Engine {
         //Parsing the JSON file.
         JSONParser parser = new JSONParser();
 
+        //Parsing the JSON array data in separate class.
         ParseJsonArray.parseArray(parser);
         try {
             List<Employee> employees = ParseJsonArray.getEmployees();
 
-            //Writing to the result file + implementing some of the logic and condition checks
+            //Parsing the JSON object data in separate class.
             ParseJsonObj.parseData(parser);
-            String path = "src/jsonFile/result";
 
+            //Writing to the result file + implementing some of the logic and condition checks
+            String path = "src/jsonFile/result";
             OutputWriter file = new OutputWriter(path);
+
             file.write("Name , Score");
             file.write(System.lineSeparator());
 
